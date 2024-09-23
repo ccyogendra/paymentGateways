@@ -25,6 +25,11 @@
 	</header>
 	<div class="main-content">
 		<i class="fa fa-check main-content__checkmark" id="checkmark"></i>
+	</div>	
+	<div>
+	<footer class="" id="footer">
+		<p class="site-footer__fineprint" id="fineprint">Copyright ©2014 | All Rights Reserved</p>
+	</footer>
 	</div>
 	<a href="#" id="toggleButton">Order Status</a>
     
@@ -40,23 +45,33 @@
 		foreach($results as $key => $result){
 			echo '<tr>';
 			echo '<td>' . htmlspecialchars($key) . '</td>';
-			if (is_array($result)) {
-				// If value is an array, convert it to a comma-separated string
-				echo '<td>' . htmlspecialchars(implode(', ', $result)) . '</td>';
+			
+			if (isset($result)) {
+				if (is_array($result)) {
+					
+					$flattenedResult = array_map(function ($item) {
+						
+						return is_array($item) ? implode(',', $item) : $item;
+					}, $result);
+			
+					
+					echo '<td>' . htmlspecialchars(implode(',', $flattenedResult)) . '</td>';
+				} else {
+					
+					echo '<td>' . htmlspecialchars($result) . '</td>';
+				}
 			} else {
-				// Otherwise, print it normally
-				echo '<td>' . htmlspecialchars($result) . '</td>';
+				
+				echo '<td></td>';
 			}
-			echo '</tr>';
+			
+			
 		}
 		?>
     </div>
-	
 
-	<footer class="site-footer" id="footer">
-		<p class="site-footer__fineprint" id="fineprint">Copyright ©2014 | All Rights Reserved</p>
-	</footer>
-	<script>
+</body>
+<script>
         document.getElementById('toggleButton').addEventListener('click', function(event) {
             event.preventDefault(); // Prevent the default action of the anchor tag
             var div = document.getElementById('myDiv');
@@ -69,5 +84,4 @@
             }
         });
     </script>
-</body>
 </html>

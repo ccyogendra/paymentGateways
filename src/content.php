@@ -22,6 +22,13 @@
                     </div> 
                     <?php } ?> 
                 </div>
+                <div class="line">
+                    <input type="text" id="" name="emailId"  placeholder="Enter Your Email ID.">
+                    </div>
+                    <div class="line">
+                    <input type="text" id="" name="first_name"  placeholder="Enter Your First Name">
+                    <input type="text" id="" name="last_name"  placeholder="Enter Your Last Name">
+                    </div>
                 <button type="submit" class="valid-button">PROCEED TO PAY</button>
             </form>
     </div>
